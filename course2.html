@@ -1,0 +1,640 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>國際移動力 進階課程設計｜校訂必修</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&display=swap');
+:root{
+  --ink:#1e293b; --sub:#64748b; --line:#e2e8f0; --bg:#f8fafc; --card:#ffffff;
+  --u1:#0891b2; --u1bg:#ecfeff; --u2:#e11d48; --u2bg:#fff1f2;
+  --u3:#7c3aed; --u3bg:#f5f3ff; --u4:#ea580c; --u4bg:#fff7ed;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Noto Sans TC',sans-serif;background:var(--bg);color:var(--ink);line-height:1.75}
+.wrap{max-width:960px;margin:0 auto;padding:0 20px}
+header.hero{background:linear-gradient(135deg,#134e4a 0%,#0f766e 100%);color:#fff;padding:72px 0 56px}
+.hero .tag{display:inline-block;background:#14b8a6;font-size:11px;font-weight:900;letter-spacing:.25em;padding:6px 16px;border-radius:999px;text-transform:uppercase}
+.hero h1{font-size:clamp(32px,6vw,52px);font-weight:900;letter-spacing:-.02em;margin:16px 0 8px}
+.hero p.sub{color:#99f6e4;font-weight:700;letter-spacing:.15em}
+.hero .powers{display:flex;flex-wrap:wrap;gap:10px;margin-top:28px}
+.hero .powers span{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);padding:6px 16px;border-radius:999px;font-size:13px;font-weight:700}
+.hero a.switch{display:inline-block;margin-top:24px;color:#99f6e4;font-size:13px;font-weight:900;text-decoration:none;border:1px solid rgba(255,255,255,.3);padding:8px 20px;border-radius:999px}
+.hero a.switch:hover{background:rgba(255,255,255,.1)}
+nav.toc{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--line);overflow-x:auto}
+nav.toc .wrap{display:flex;gap:4px;padding:10px 20px;white-space:nowrap}
+nav.toc a{font-size:13px;font-weight:700;color:var(--sub);text-decoration:none;padding:6px 14px;border-radius:999px}
+nav.toc a:hover{background:var(--bg);color:var(--ink)}
+main{padding:48px 0 80px}
+section{margin-bottom:64px}
+h2.sec{font-size:26px;font-weight:900;letter-spacing:-.01em;display:flex;align-items:center;gap:12px;margin-bottom:20px}
+h2.sec::before{content:"";width:6px;height:28px;border-radius:3px;background:var(--ink)}
+.card{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:28px;margin-bottom:20px}
+table{width:100%;border-collapse:collapse;font-size:14px;margin:12px 0}
+th,td{border:1px solid var(--line);padding:10px 12px;text-align:left;vertical-align:top}
+th{background:var(--bg);font-weight:900;font-size:13px}
+.tablebox{overflow-x:auto}
+.unitgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:14px}
+.unitcard{border-radius:20px;padding:22px;color:#fff}
+.unitcard .n{font-size:11px;font-weight:900;letter-spacing:.2em;opacity:.8;text-transform:uppercase}
+.unitcard h3{font-size:20px;font-weight:900;margin:6px 0}
+.unitcard p{font-size:13px;font-weight:700;opacity:.9}
+.u1{background:var(--u1)}.u2{background:var(--u2)}.u3{background:var(--u3)}.u4{background:var(--u4)}
+.unit-head{border-radius:20px;padding:28px;margin-bottom:20px;color:#fff}
+.unit-head h2{font-size:24px;font-weight:900}
+.unit-head p{font-weight:700;opacity:.92;margin-top:6px;font-size:14px}
+details.week{background:var(--card);border:1px solid var(--line);border-radius:18px;margin-bottom:14px;overflow:hidden}
+details.week summary{cursor:pointer;list-style:none;padding:18px 24px;display:flex;align-items:center;gap:14px;font-weight:900;font-size:16px}
+details.week summary::-webkit-details-marker{display:none}
+details.week summary .wk{flex-shrink:0;font-size:11px;font-weight:900;padding:5px 12px;border-radius:999px;color:#fff}
+details.week summary .axes{margin-left:auto;font-size:11px;font-weight:700;color:var(--sub);flex-shrink:0}
+details.week summary::after{content:"＋";font-weight:400;color:var(--sub);margin-left:10px}
+details.week[open] summary::after{content:"－"}
+details.week .body{padding:0 24px 24px;border-top:1px solid var(--line)}
+.week h4{font-size:14px;font-weight:900;letter-spacing:.1em;margin:20px 0 8px;display:flex;align-items:center;gap:8px}
+.week h4 .dot{width:8px;height:8px;border-radius:50%}
+.week ul,.week ol{padding-left:22px;font-size:14.5px}
+.week li{margin-bottom:6px}
+.wk1 .wk,.wk1 h4 .dot{background:var(--u1)} .wk2 .wk,.wk2 h4 .dot{background:var(--u2)}
+.wk3 .wk,.wk3 h4 .dot{background:var(--u3)} .wk4 .wk,.wk4 h4 .dot{background:var(--u4)}
+.uh1{background:linear-gradient(135deg,var(--u1),#0e7490)} .uh2{background:linear-gradient(135deg,var(--u2),#be123c)}
+.uh3{background:linear-gradient(135deg,var(--u3),#6d28d9)} .uh4{background:linear-gradient(135deg,var(--u4),#c2410c)}
+.note{background:#f0fdfa;border:1px solid #99f6e4;border-radius:14px;padding:14px 18px;font-size:13.5px;font-weight:500;color:#0f766e;margin-top:14px}
+footer{background:#134e4a;color:#5eead4;text-align:center;padding:40px 20px;font-size:12px;font-weight:700;letter-spacing:.2em}
+footer a{color:#99f6e4}
+@media print{
+  nav.toc{display:none} details.week{page-break-inside:avoid}
+  details.week .body{display:block!important} details.week summary::after{display:none}
+}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="wrap">
+    <span class="tag">校訂必修 · 進階 Advanced</span>
+    <h1>國際移動力 Global Mobility Ⅱ</h1>
+    <p class="sub">進階 18 週 · 5＋4／5＋4 四單元設計 · 走向世界，採取行動</p>
+    <div class="powers">
+      <span>🗣 表達力</span><span>💭 換位思考力</span><span>💻 科技力</span><span>🌏 跨文化理解力</span><span>🧩 設計思考</span>
+    </div>
+    <a class="switch" href="course.html">← 初階課程（第一學期）</a>
+  </div>
+</header>
+
+<nav class="toc">
+  <div class="wrap">
+    <a href="#overview">課程總覽</a>
+    <a href="#unit1">單元一 未來世界</a>
+    <a href="#unit2">單元二 跨國書信</a>
+    <a href="#unit3">單元三 文化思辨</a>
+    <a href="#unit4">單元四 XR 策展</a>
+    <a href="#matrix">五力對應</a>
+    <a href="#grading">成績結構</a>
+  </div>
+</nav>
+
+<main class="wrap">
+
+<section id="overview">
+  <h2 class="sec">進階課程總覽</h2>
+  <div class="card">
+    <div class="tablebox"><table>
+      <tr><th style="width:130px">課程定位</th><td>初階「看見自己，看見世界」之延伸——進階走向真實跨國協作與行動</td></tr>
+      <tr><th>單元架構</th><td>「5＋4／5＋4」四單元設計，每單元以一項單元成果收尾</td></tr>
+      <tr><th>真實對接</th><td>美國 Woodson High School 書信交流＋日本、巴西同步視訊交流</td></tr>
+      <tr><th>期末評量</th><td>XR 展間口說測驗（個人導覽 1.5 分鐘＋集體反思 0.5 分鐘）＋學年學習歷程檔案</td></tr>
+    </table></div>
+  </div>
+  <div class="unitgrid">
+    <div class="unitcard u1"><div class="n">Unit 1 · 第 1-5 週</div><h3>未來世界</h3><p>The Future World<br>成果：未來世界立場辯論</p></div>
+    <div class="unitcard u2"><div class="n">Unit 2 · 第 6-9 週</div><h3>跨國書信</h3><p>Woodson Exchange<br>成果：深度交流信（期中）</p></div>
+    <div class="unitcard u3"><div class="n">Unit 3 · 第 10-14 週</div><h3>文化資產與思辨</h3><p>Heritage & Debate<br>成果：文化議題研討會</p></div>
+    <div class="unitcard u4"><div class="n">Unit 4 · 第 15-18 週</div><h3>XR 策展與跨國交流</h3><p>XR & Exchange<br>成果：XR 展覽＋口說測驗</p></div>
+  </div>
+</section>
+
+<section id="unit1">
+  <div class="unit-head uh1">
+    <h2>單元一「未來世界 The Future World」第 1-5 週</h2>
+    <p>單元目標：建立 AI 素養與批判思考基本功——會用 AI、會查證 AI、會與 AI 攻防，最終在爭議議題中表明立場。<br>單元成果：未來世界立場辯論（第 5 週）</p>
+  </div>
+
+  <details class="week wk1" open>
+    <summary><span class="wk">W1</span>進階啟程：AI 時代的移動力<span class="axes">科技力 · 設計思考</span></summary>
+    <div class="body">
+      <h4><span class="dot"></span>文本</h4>
+      <ul>
+        <li>課程企劃書「未來世界」專題說明：利用 AI 工具生成演講大綱、潤稿及對話練習，探討爭議問題並表明立場</li>
+        <li>影片：生成式 AI 是什麼？（3-5 分鐘科普短片）</li>
+        <li>講義：酷 AI 學習平臺使用指南＋課堂 AI 使用規範</li>
+      </ul>
+      <h4><span class="dot"></span>課堂任務</h4>
+      <ol>
+        <li>進階五力雷達前測：新增第六軸「AI 協作力」自評，寫下 50 字進階學期目標</li>
+        <li>AI 初體驗「它認識我嗎？」：請 AI 介紹自己的學校／城市，找出至少一處錯誤並查證</li>
+        <li>建立進階學習檔案夾，回顧初階期末寫下的「進階課最想挑戰的一項」</li>
+      </ol>
+      <h4><span class="dot"></span>評量尺規</h4>
+      <div class="tablebox"><table>
+        <tr><th>規準</th><th>優秀 4</th><th>良好 3</th><th>基礎 2</th><th>待加強 1</th></tr>
+        <tr><td>錯誤偵測</td><td>找出錯誤並說明「為什麼 AI 會這樣錯」</td><td>找出錯誤並查證</td><td>找出疑點但未查證</td><td>全盤接受 AI 回答</td></tr>
+        <tr><td>查證品質</td><td>兩個以上可信來源交叉確認</td><td>一個可信來源</td><td>來源可信度低</td><td>未查證</td></tr>
+        <tr><td>目標設定</td><td>目標具體且連結初階學習經驗</td><td>目標明確</td><td>目標籠統</td><td>未寫出</td></tr>
+      </table></div>
+    </div>
+  </details>
+
+  <details class="week wk1">
+    <summary><span class="wk">W2</span>AI 素養：幻覺、偏見與查核<span class="axes">科技力 · 換位思考力</span></summary>
+    <div class="body">
+      <h4><span class="dot"></span>文本</h4>
+      <ul>
+        <li>新聞文本：一則 AI 幻覺造成錯誤資訊傳播的真實案例</li>
+        <li>講義：事實查核三步驟——來源／交叉／時效</li>
+        <li>圖例：AI 生成圖的刻板印象示例（相同職業提示詞的人物性別、族裔分布）</li>
+      </ul>
+      <h4><span class="dot"></span>課堂任務</h4>
+      <ol>
+        <li>幻覺獵人：讓 AI 回答三個問題（含一題冷門在地問題），標記「正確／錯誤／無法確認」並附證據</li>
+        <li>偏見實驗：同一提示詞生成多張圖，統計討論「AI 從哪裡學來這些預設？誰被排除了？」</li>
+        <li>制定「我的 AI 使用守則」三條，貼上班級共享板</li>
+      </ol>
+      <h4><span class="dot"></span>評量尺規</h4>
+      <div class="tablebox"><table>
+        <tr><th>規準</th><th>優秀 4</th><th>良好 3</th><th>基礎 2</th><th>待加強 1</th></tr>
+        <tr><td>查核執行</td><td>三題皆完成三步驟且證據明確</td><td>完成三步驟</td><td>步驟不完整</td><td>未查核</td></tr>
+        <tr><td>偏見分析</td><td>指出偏見模式並推論成因、指出誰被排除</td><td>指出偏見模式</td><td>描述現象未分析</td><td>未參與</td></tr>
+        <tr><td>使用守則</td><td>三條具體可執行且回應本週發現</td><td>三條完整</td><td>守則籠統</td><td>未完成</td></tr>
+      </table></div>
+    </div>
+  </details>
+
+  <details class="week wk1">
+    <summary><span class="wk">W3</span>爭議議題工作坊 I：AI 輔助研究<span class="axes">科技力 · 表達力</span></summary>
+    <div class="body">
+      <h4><span class="dot"></span>文本</h4>
+      <ul>
+        <li>爭議議題選單：a. AI 該不該進入課堂評分？ b. 核能是綠能嗎？ c. 大學文憑還重要嗎？ d. 基因編輯該開放嗎？</li>
+        <li>範例影片：TED 議題演講一則（觀察講者如何鋪陳正反再表態）</li>
+        <li>講義：RENNS 證據準則複習</li>
+      </ul>
+      <h4><span class="dot"></span>課堂任務</h4>
+      <ol>
+        <li>選題與立場：兩人一組認領議題並<b>抽選</b>正反立場（練習「為指定立場辯護」）</li>
+        <li>AI 生成大綱→人工重構：逐條標註「採用／刪除／改寫」及理由——AI 是起點不是終點</li>
+        <li>RENNS 證據蒐集：至少三筆，每筆人工查證來源（AI 提供的引用一律驗證）</li>
+      </ol>
+      <h4><span class="dot"></span>評量尺規</h4>
+      <div class="tablebox"><table>
+        <tr><th>規準</th><th>優秀 4</th><th>良好 3</th><th>基礎 2</th><th>待加強 1</th></tr>
+        <tr><td>大綱重構</td><td>標註完整且重構版明顯優於 AI 版</td><td>有標註有重構</td><td>小幅修改 AI 版</td><td>直接使用 AI 版</td></tr>
+        <tr><td>證據品質</td><td>三筆皆查證屬實且 RENNS 多元</td><td>三筆皆查證</td><td>部分查證</td><td>未查證</td></tr>
+        <tr><td>立場鋪陳</td><td>能同時陳述反方最強論點</td><td>立場清楚</td><td>立場模糊</td><td>未成形</td></tr>
+      </table></div>
+    </div>
+  </details>
+
+  <details class="week wk1">
+    <summary><span class="wk">W4</span>爭議議題工作坊 II：AI 潤稿與攻防練習<span class="axes">科技力 · 換位思考力</span></summary>
+    <div class="body">
+      <h4><span class="dot"></span>文本</h4>
+      <ul>
+        <li>潤稿前後對照範例：哪些 AI 建議該接受、哪些會失去個人聲音</li>
+        <li>講義：反駁三式——質疑證據（Is it true?）／質疑推論（Does it follow?）／提出代價（At what cost?）</li>
+      </ul>
+      <h4><span class="dot"></span>課堂任務</h4>
+      <ol>
+        <li>AI 潤稿與取捨：逐項「接受／拒絕」修改建議並註明理由，保留前後對照</li>
+        <li>AI 攻防練習：指示 AI 扮演最強反方對話三輪，記錄「最難回應的一個反駁」與最佳回應</li>
+        <li>辯論賽制說明與組內模擬</li>
+      </ol>
+      <h4><span class="dot"></span>評量尺規</h4>
+      <div class="tablebox"><table>
+        <tr><th>規準</th><th>優秀 4</th><th>良好 3</th><th>基礎 2</th><th>待加強 1</th></tr>
+        <tr><td>潤稿判斷</td><td>取捨有理由且保住個人聲音</td><td>有取捨有理由</td><td>全盤接受或全盤拒絕</td><td>未完成</td></tr>
+        <tr><td>攻防深度</td><td>三輪對話有來回，紀錄具體</td><td>完成三輪</td><td>對話流於表面</td><td>未進行</td></tr>
+        <tr><td>反駁運用</td><td>能運用兩式以上反駁</td><td>運用一式</td><td>反駁未成形</td><td>未參與</td></tr>
+      </table></div>
+    </div>
+  </details>
+
+  <details class="week wk1">
+    <summary><span class="wk">W5</span>單元成果：未來世界立場辯論<span class="axes">表達力 · 換位思考力（總結性評量）</span></summary>
+    <div class="body">
+      <h4><span class="dot"></span>文本</h4>
+      <ul>
+        <li>講義：辯論流程與評分說明、大綱卡（只寫關鍵詞）</li>
+        <li>學生自備：講稿、攻防紀錄</li>
+      </ul>
+      <h4><span class="dot"></span>課堂任務</h4>
+      <ol>
+        <li>2 對 2 迷你辯論：每場 6 分鐘（立論各 1 分→反駁各 1 分→結辯各 30 秒→聽眾提問）</li>
+        <li>聽眾投票「較有說服力的一方」＋理由一句（投立場不投交情）</li>
+        <li>單元反思：Facts–Vocab–Impact＋「AI 幫了我什麼、誤導過我什麼」</li>
+      </ol>
+      <h4><span class="dot"></span>評量尺規（單元一成果）</h4>
+      <div class="tablebox"><table>
+        <tr><th>規準</th><th>優秀 4</th><th>良好 3</th><th>基礎 2</th><th>待加強 1</th></tr>
+        <tr><td>立論品質</td><td>立場清楚、RENNS 證據有力</td><td>立場與證據完整</td><td>有立場證據薄弱</td><td>立場不明</td></tr>
+        <tr><td>反駁能力</td><td>準確回應對方並運用反駁三式</td><td>有回應對方論點</td><td>重述己方未回應</td><td>未反駁</td></tr>
+        <tr><td>AI 協作透明</td><td>潤稿對照與攻防紀錄完整、取捨清楚</td><td>紀錄完整</td><td>紀錄零散</td><td>無紀錄</td></tr>
+        <tr><td>風度與時間</td><td>尊重對手、時間精準</td><td>大致合宜</td><td>超時或搶話</td><td>失控</td></tr>
+      </table></div>
+    </div>
+  </details>
+</section>
+
+<section id="unit2">
+  <div class="unit-head uh2">
+    <h2>單元二「跨國書信 Woodson Exchange」第 6-9 週</h2>
+    <p>單元目標：與美國 Woodson High School（或日本、巴西夥伴校）真實書信對接，以真實興趣開啟交流，從回信讀出文化差異。<br>單元成果：深度交流信＋文化觀察筆記（第 9 週，期中總結性評量）<br>彈性備註：若回信未及時抵達，第 8 週可改用歷屆信件文本（Oct Letter／0322 Letters）進行</p>
+  </div>
+
+  <details class="week wk2">
+    <summary><span class="wk">W6</span>認識筆友：第一封信<span class="axes">跨文化理解力 · 表達力</span></summary>
+    <div class="body">
+      <h4><span class="dot"></span>文本</h4>
+      <ul>
+        <li>Woodson High School 簡介（企劃書交流計畫＋學校官網）</li>
+        <li>範例信：歷屆學長姊書信節選——基於真實興趣（傳統中國舞蹈、步槍射擊、武術、網漫 Webtoons）</li>
+        <li>講義：英文書信格式與語氣（greeting／body／closing）</li>
+      </ul>
+      <h4><span class="dot"></span>課堂任務</h4>
+      <ol>
+        <li>範例信解構：「這封信為什麼像真人寫的」——具體興趣、提問、幽默感 vs 無聊範本信</li>
+        <li>自我介紹信初稿：150-200 字，含一個真實興趣的具體描述（RENNS）＋一個真誠提問</li>
+        <li>選一張「代表我的照片」寫 30 字說明，隨信附上</li>
+      </ol>
+      <h4><span class="dot"></span>評量尺規</h4>
+      <div class="tablebox"><table>
+        <tr><th>規準</th><th>優秀 4</th><th>良好 3</th><th>基礎 2</th><th>待加強 1</th></tr>
+        <tr><td>真實性</td><td>興趣描述具體到「只有我寫得出來」</td><td>有真實興趣描述</td><td>描述通用空泛</td><td>套用範本</td></tr>
+        <tr><td>提問設計</td><td>提問真誠且能開啟對話</td><td>有提問</td><td>提問封閉或客套</td><td>無提問</td></tr>
+        <tr><td>格式語氣</td><td>格式正確、語氣自然友善</td><td>格式正確</td><td>格式有誤</td><td>未成信</td></tr>
+      </table></div>
+    </div>
+  </details>
+
+  <details class="week wk2">
+    <summary><span class="wk">W7</span>書信工藝：修訂與寄出<span class="axes">表達力</span></summary>
+    <div class="body">
+      <h4><span class="dot"></span>文本</h4>
+      <ul>
+        <li>批改代碼表複習（vf／vt／wc／wo／gr／sp＋輔助符號）</li>
+        <li>Show, Don't Tell 書信應用：✗ "I like dancing." → ✓ "Every Friday after school, I practice traditional Chinese dance until my legs shake."</li>
+      </ul>
+      <h4><span class="dot"></span>課堂任務</h4>
+      <ol>
+        <li>三步同儕互評：標註→修正→更新個人錯誤清單（對照初階清單檢視進步）</li>
+        <li>二稿修訂＋教師終校，正式寄出（Oct Letter）</li>
+        <li>換位預測：寫下「我猜筆友會怎麼回」，收信後驗證</li>
+      </ol>
+      <h4><span class="dot"></span>評量尺規</h4>
+      <div class="tablebox"><table>
+        <tr><th>規準</th><th>優秀 4</th><th>良好 3</th><th>基礎 2</th><th>待加強 1</th></tr>
+        <tr><td>互評品質</td><td>標註準確且建議具體</td><td>標註大致準確</td><td>標註零星</td><td>未互評</td></tr>
+        <tr><td>修訂幅度</td><td>二稿回應標註且畫面感提升</td><td>修正多數錯誤</td><td>小幅修正</td><td>未修訂</td></tr>
+        <tr><td>錯誤清單</td><td>能對照初階清單說明進步與待改</td><td>更新清單</td><td>清單籠統</td><td>未更新</td></tr>
+        <tr><td>換位預測</td><td>預測具體且有依據</td><td>完成預測</td><td>預測空泛</td><td>未完成</td></tr>
+      </table></div>
+    </div>
+  </details>
+
+  <details class="week wk2">
+    <summary><span class="wk">W8</span>讀信：從回信看見文化<span class="axes">跨文化理解力 · 換位思考力</span></summary>
+    <div class="body">
+      <h4><span class="dot"></span>文本</h4>
+      <ul>
+        <li>筆友回信（真實文本；備案：歷屆信件）</li>
+        <li>講義：文化觀察三層次——表層事實／行為習慣／價值觀</li>
+      </ul>
+      <h4><span class="dot"></span>課堂任務</h4>
+      <ol>
+        <li>細讀回信：完成文化觀察筆記「三個相同／三個不同／一個最意外」並標註層次</li>
+        <li>對照牆：全班彙整「美國高中生活 vs 我們」，討論制度差異與價值觀差異</li>
+        <li>驗證上週預測，擬定回信要點三則</li>
+      </ol>
+      <h4><span class="dot"></span>評量尺規</h4>
+      <div class="tablebox"><table>
+        <tr><th>規準</th><th>優秀 4</th><th>良好 3</th><th>基礎 2</th><th>待加強 1</th></tr>
+        <tr><td>觀察層次</td><td>觀察觸及價值觀層且分層正確</td><td>三層皆有觀察</td><td>停留表層事實</td><td>觀察零散</td></tr>
+        <tr><td>文本依據</td><td>每則觀察皆引信中原句佐證</td><td>多數有依據</td><td>部分臆測</td><td>憑印象書寫</td></tr>
+        <tr><td>差異詮釋</td><td>能區分制度差異與價值觀差異</td><td>有詮釋</td><td>僅列差異未詮釋</td><td>未完成</td></tr>
+      </table></div>
+    </div>
+  </details>
+
+  <details class="week wk2">
+    <summary><span class="wk">W9</span>單元成果：深度交流信（期中評量）<span class="axes">表達力 · 跨文化理解力（總結性評量）</span></summary>
+    <div class="body">
+      <h4><span class="dot"></span>文本</h4>
+      <ul>
+        <li>深度信範例（0322 Letters 精神：具體共同興趣的延伸，不是空泛問候）</li>
+        <li>講義：從 small talk 到 real talk——回應、深化、提問三步</li>
+      </ul>
+      <h4><span class="dot"></span>課堂任務</h4>
+      <ol>
+        <li>深度交流信：200-250 字——①具體回應筆友至少兩點②深化一個共同興趣（RENNS）③一個更深入的真誠提問</li>
+        <li>同儕互評後寄出</li>
+        <li>單元反思：Facts–Vocab–Impact＋「這位筆友改變了我對世界的哪一個想像」</li>
+      </ol>
+      <h4><span class="dot"></span>評量尺規（單元二成果／期中總結性評量）</h4>
+      <div class="tablebox"><table>
+        <tr><th>規準</th><th>優秀 4</th><th>良好 3</th><th>基礎 2</th><th>待加強 1</th></tr>
+        <tr><td>回應深度</td><td>具體回應兩點以上且見真誠</td><td>回應兩點</td><td>回應一點或客套</td><td>未回應對方</td></tr>
+        <tr><td>興趣深化</td><td>延伸具體、RENNS 自然</td><td>有延伸</td><td>延伸表面</td><td>無延伸</td></tr>
+        <tr><td>提問品質</td><td>提問觸及價值觀層</td><td>提問具體</td><td>提問客套</td><td>無提問</td></tr>
+        <tr><td>語言品質</td><td>錯誤極少、語氣自然</td><td>少量錯誤</td><td>錯誤較多可讀</td><td>影響理解</td></tr>
+        <tr><td>文化觀察筆記</td><td>三層次完整且有詮釋</td><td>筆記完整</td><td>筆記零散</td><td>未完成</td></tr>
+      </table></div>
+    </div>
+  </details>
+</section>
+
+<section id="unit3">
+  <div class="unit-head uh3">
+    <h2>單元三「文化資產與思辨 Heritage & Debate」第 10-14 週</h2>
+    <p>單元目標：從 UNESCO 飲食文化、文化儀式到 Slum Tourism 與世界遺產，進入高階價值思辨——文化是誰的？誰受益？誰付出代價？<br>單元成果：文化議題研討會 Symposium（第 14 週）</p>
+  </div>
+
+  <details class="week wk3">
+    <summary><span class="wk">W10</span>飲食與身分：UNESCO 30 Culinary Traditions<span class="axes">跨文化理解力</span></summary>
+    <div class="body">
+      <h4><span class="dot"></span>文本</h4>
+      <ul>
+        <li>UNESCO 世界飲食文化名錄選讀：日本 Washoku 與「旬」的季節美學、Chinese Tea 與唐代僧侶冥想的歷史</li>
+        <li>影片：和食或茶文化紀錄片片段（3-5 分鐘）</li>
+      </ul>
+      <h4><span class="dot"></span>課堂任務</h4>
+      <ol>
+        <li>文化身分卡：認領一項飲食傳統——是什麼／對誰重要／如何傳承／面臨什麼危機</li>
+        <li>台灣申遺提案：「哪一項台灣飲食文化值得申請 UNESCO 名錄」一分鐘提案（不只是好吃）</li>
+        <li>RENNS 檢核：提案須含 Names 與 Numbers 各一</li>
+      </ol>
+      <h4><span class="dot"></span>評量尺規</h4>
+      <div class="tablebox"><table>
+        <tr><th>規準</th><th>優秀 4</th><th>良好 3</th><th>基礎 2</th><th>待加強 1</th></tr>
+        <tr><td>文化詮釋</td><td>說出飲食背後的身分與價值意涵</td><td>四格完整</td><td>停留在食物介紹</td><td>未完成</td></tr>
+        <tr><td>資料查證</td><td>引用文本與補充資料</td><td>引用文本</td><td>僅憑常識</td><td>內容有誤</td></tr>
+        <tr><td>提案說服力</td><td>意涵清楚、RENNS 到位</td><td>提案完整</td><td>只說好吃有名</td><td>未提案</td></tr>
+      </table></div>
+    </div>
+  </details>
+
+  <details class="week wk3">
+    <summary><span class="wk">W11</span>文化慣例與儀式 Rituals<span class="axes">跨文化理解力 · 換位思考力</span></summary>
+    <div class="body">
+      <h4><span class="dot"></span>文本</h4>
+      <ul>
+        <li>案例集：世界成年禮與節慶儀式（猶太成年禮、西班牙奔牛節、日本成人式、台灣做十六歲）</li>
+        <li>講義：文化相對論 vs 普世價值初探——「尊重差異」的界線在哪裡？</li>
+      </ul>
+      <h4><span class="dot"></span>課堂任務</h4>
+      <ol>
+        <li>儀式解碼三步：描述（不評價）→功能分析→台灣對照</li>
+        <li>界線思辨：「當文化慣例與人權衝突」案例討論（銜接初階婦女人權），站位發言須引用文本</li>
+        <li>研討會預告：各組開始認領 Symposium 方向</li>
+      </ol>
+      <h4><span class="dot"></span>評量尺規</h4>
+      <div class="tablebox"><table>
+        <tr><th>規準</th><th>優秀 4</th><th>良好 3</th><th>基礎 2</th><th>待加強 1</th></tr>
+        <tr><td>描述紀律</td><td>能先純描述再分析</td><td>大致區分</td><td>描述夾雜評價</td><td>直接下結論</td></tr>
+        <tr><td>功能分析</td><td>準確說出社群功能並對照台灣</td><td>有功能分析</td><td>分析表面</td><td>未分析</td></tr>
+        <tr><td>思辨品質</td><td>立場有文本依據且能回應異見</td><td>立場有依據</td><td>立場無依據</td><td>未參與</td></tr>
+      </table></div>
+    </div>
+  </details>
+
+  <details class="week wk3">
+    <summary><span class="wk">W12</span>Slum Tourism：旅行的倫理<span class="axes">換位思考力</span></summary>
+    <div class="body">
+      <h4><span class="dot"></span>文本</h4>
+      <ul>
+        <li>正反兩篇短文：〈貧民窟旅遊帶來收入與能見度〉vs〈把貧窮做成景點是一種消費〉</li>
+        <li>數據文本：貧民窟旅遊產業規模與收益分配資料</li>
+      </ul>
+      <h4><span class="dot"></span>課堂任務</h4>
+      <ol>
+        <li>利害關係人地圖：居民／旅客／旅行社／政府——各寫「得到什麼／付出什麼／最想說的一句話」</li>
+        <li>結構化思辨：發言必須先複述對方論點再回應（steel-manning）</li>
+        <li>個人立場短文：150 字，表明立場並回應一個最強反方論點</li>
+      </ol>
+      <h4><span class="dot"></span>評量尺規</h4>
+      <div class="tablebox"><table>
+        <tr><th>規準</th><th>優秀 4</th><th>良好 3</th><th>基礎 2</th><th>待加強 1</th></tr>
+        <tr><td>利害分析</td><td>四方視角具體且矛盾處清楚</td><td>四方完整</td><td>部分視角空泛</td><td>未完成</td></tr>
+        <tr><td>複述對方</td><td>準確複述對方最強論點再回應</td><td>能複述再回應</td><td>只講己方</td><td>未參與</td></tr>
+        <tr><td>立場短文</td><td>立場清楚且正面迎戰反方論點</td><td>立場清楚有回應</td><td>有立場無回應</td><td>未完成</td></tr>
+      </table></div>
+    </div>
+  </details>
+
+  <details class="week wk3">
+    <summary><span class="wk">W13</span>文化與環境：世界遺產的永續<span class="axes">跨文化理解力 · 設計思考</span></summary>
+    <div class="body">
+      <h4><span class="dot"></span>文本</h4>
+      <ul>
+        <li>UNESCO 世界遺產案例：過度觀光下的威尼斯或馬丘比丘（限流、觀光稅、居民流失）</li>
+        <li>SDG 8.9（永續觀光）與 11.4（保護文化與自然遺產）細項</li>
+      </ul>
+      <h4><span class="dot"></span>課堂任務</h4>
+      <ol>
+        <li>案例分析：威脅清單＋管理措施＋成效評估</li>
+        <li>研討會準備：確定場次主題，完成企劃——3 分鐘引言大綱、兩個討論問題、小組立場</li>
+        <li>教師逐組健檢：確認問題「可辯、有料、非是非題」</li>
+      </ol>
+      <h4><span class="dot"></span>評量尺規</h4>
+      <div class="tablebox"><table>
+        <tr><th>規準</th><th>優秀 4</th><th>良好 3</th><th>基礎 2</th><th>待加強 1</th></tr>
+        <tr><td>案例掌握</td><td>威脅、措施、成效三段俱全有數據</td><td>三段俱全</td><td>僅列威脅</td><td>未完成</td></tr>
+        <tr><td>引言大綱</td><td>有鉤子、有脈絡、有爭點</td><td>大綱完整</td><td>大綱鬆散</td><td>未完成</td></tr>
+        <tr><td>討論問題</td><td>兩題皆開放可辯且連結文本</td><td>兩題完整</td><td>有是非題混入</td><td>少於兩題</td></tr>
+      </table></div>
+    </div>
+  </details>
+
+  <details class="week wk3">
+    <summary><span class="wk">W14</span>單元成果：文化議題研討會 Symposium<span class="axes">表達力 · 換位思考力（總結性評量）</span></summary>
+    <div class="body">
+      <h4><span class="dot"></span>文本</h4>
+      <ul>
+        <li>講義：研討會流程——引言 3 分→開放討論 8 分→總結 2 分</li>
+        <li>學生自備：引言稿、討論問題、立場摘要</li>
+      </ul>
+      <h4><span class="dot"></span>課堂任務</h4>
+      <ol>
+        <li>小組主持研討場次：陳述爭點與立場→兩個問題引導全班→歸納不同觀點收束</li>
+        <li>聽眾任務：提問卡至少發言一次，發言須先複述前一位發言者觀點</li>
+        <li>單元反思：Facts–Vocab–Impact＋「我在哪個議題上改變過立場？為什麼」</li>
+      </ol>
+      <h4><span class="dot"></span>評量尺規（單元三成果）</h4>
+      <div class="tablebox"><table>
+        <tr><th>規準</th><th>優秀 4</th><th>良好 3</th><th>基礎 2</th><th>待加強 1</th></tr>
+        <tr><td>引言品質</td><td>爭點清楚、立場有據、開場吸引人</td><td>引言完整</td><td>引言平鋪資訊</td><td>未完成</td></tr>
+        <tr><td>引導功力</td><td>能追問、串聯、讓不同立場對話</td><td>完成兩問並回應</td><td>問了未回應</td><td>自問自答</td></tr>
+        <tr><td>總結能力</td><td>準確歸納多方觀點且指出未解之處</td><td>有總結</td><td>總結偏袒己方</td><td>未總結</td></tr>
+        <tr><td>聽眾參與（個人）</td><td>發言先複述再回應、有推進討論</td><td>發言一次合格</td><td>發言未複述</td><td>未發言</td></tr>
+      </table></div>
+    </div>
+  </details>
+</section>
+
+<section id="unit4">
+  <div class="unit-head uh4">
+    <h2>單元四「XR 策展與跨國交流」第 15-18 週</h2>
+    <p>單元目標：以 XR 虛擬展覽整合全學年學習，與日本、巴西夥伴校同步視訊交流，以口說測驗與學年檔案收束。<br>單元成果：XR 展覽（N＋1 展區）＋跨國視訊＋期末口說測驗（第 18 週）</p>
+  </div>
+
+  <details class="week wk4">
+    <summary><span class="wk">W15</span>XR 策展 I：N＋1 展區規劃<span class="axes">科技力 · 設計思考</span></summary>
+    <div class="body">
+      <h4><span class="dot"></span>文本</h4>
+      <ul>
+        <li>企劃書 XR 規劃：N 個個人主題區（每人 1 張原始藝術品＋5 張 AI 生成圖）＋1 個集體協作區（1 封面＋3 AI 圖）</li>
+        <li>酷 AI 平臺 XR 展間操作教學</li>
+        <li>範例：策展說明卡（展品名稱、媒材、策展理念中英各一句）</li>
+      </ul>
+      <h4><span class="dot"></span>課堂任務</h4>
+      <ol>
+        <li>個人主題選定：從單元三 Reading 主題擇一作為個人展區主題</li>
+        <li>展品製作：1 張原作（標註出處授權）＋提示詞生成 5 張 AI 圖（保留全部提示詞，展現迭代）</li>
+        <li>撰寫中英雙語展品說明卡，上傳 XR 展間</li>
+      </ol>
+      <h4><span class="dot"></span>評量尺規</h4>
+      <div class="tablebox"><table>
+        <tr><th>規準</th><th>優秀 4</th><th>良好 3</th><th>基礎 2</th><th>待加強 1</th></tr>
+        <tr><td>策展概念</td><td>6 張展品環繞清楚的策展論述</td><td>主題一致</td><td>圖片湊數、缺論述</td><td>未完成</td></tr>
+        <tr><td>提示詞迭代</td><td>紀錄呈現明顯迭代改進</td><td>保留提示詞</td><td>提示詞單一</td><td>未保留</td></tr>
+        <tr><td>原作處理</td><td>出處授權清楚且與 AI 圖形成對話</td><td>出處清楚</td><td>出處不明</td><td>未附原作</td></tr>
+        <tr><td>說明卡</td><td>雙語準確且點出理念</td><td>雙語完整</td><td>僅單語或空泛</td><td>未完成</td></tr>
+      </table></div>
+    </div>
+  </details>
+
+  <details class="week wk4">
+    <summary><span class="wk">W16</span>XR 策展 II：集體協作區與導覽準備<span class="axes">表達力 · 設計思考</span></summary>
+    <div class="body">
+      <h4><span class="dot"></span>文本</h4>
+      <ul>
+        <li>集體協作區主題（企劃書規格）：高三生活點滴、城市文化特徵與青少年趨勢</li>
+        <li>講義：導覽稿架構——個人導覽 1.5 分（主題→亮點展品→策展理念）＋集體反思 0.5 分（跨國協作收穫）</li>
+      </ul>
+      <h4><span class="dot"></span>課堂任務</h4>
+      <ol>
+        <li>完成「＋1」集體協作區：1 張封面＋3 張 AI 生成圖</li>
+        <li>撰寫導覽稿：套用 RENNS 與畫面開場</li>
+        <li>組內試講與互評，錄音自評發音（斷句、連音）</li>
+      </ol>
+      <h4><span class="dot"></span>評量尺規</h4>
+      <div class="tablebox"><table>
+        <tr><th>規準</th><th>優秀 4</th><th>良好 3</th><th>基礎 2</th><th>待加強 1</th></tr>
+        <tr><td>集體區品質</td><td>主題聚焦、四圖成一體、人人參與</td><td>完整成區</td><td>拼湊感重</td><td>未完成</td></tr>
+        <tr><td>導覽稿結構</td><td>兩段架構完整、開場有畫面</td><td>架構完整</td><td>結構鬆散</td><td>未完成</td></tr>
+        <tr><td>試講投入</td><td>試講並依回饋修訂、有錄音自評</td><td>完成試講</td><td>敷衍帶過</td><td>未試講</td></tr>
+      </table></div>
+    </div>
+  </details>
+
+  <details class="week wk4">
+    <summary><span class="wk">W17</span>跨國視訊交流：Taiwanese Culture Game<span class="axes">跨文化理解力 · 表達力</span></summary>
+    <div class="body">
+      <h4><span class="dot"></span>文本</h4>
+      <ul>
+        <li>歷屆 Taiwanese Culture Game 與日本交流實例（同步互動、即時應變）</li>
+        <li>講義：視訊交流禮儀與即時應變——聽不懂怎麼辦、冷場怎麼救、如何把問題丟回去</li>
+      </ul>
+      <h4><span class="dot"></span>課堂任務</h4>
+      <ol>
+        <li>文化遊戲設計：每組 3 題（圖片線索＋三選項＋答案揭曉後 30 秒文化解說）</li>
+        <li>同步視訊交流（日本／巴西）：主持遊戲→分享 XR 展間並簡短導覽→即時 Q&A</li>
+        <li>交流後速記：「對方最讓我意外的反應」＋「我臨場處理最好／最差的一刻」</li>
+      </ol>
+      <h4><span class="dot"></span>評量尺規</h4>
+      <div class="tablebox"><table>
+        <tr><th>規準</th><th>優秀 4</th><th>良好 3</th><th>基礎 2</th><th>待加強 1</th></tr>
+        <tr><td>遊戲設計</td><td>題目有文化梗、選項有誘答力、解說精彩</td><td>三題完整</td><td>題目流於常識</td><td>未完成</td></tr>
+        <tr><td>即時互動</td><td>臨場應變自然、能追問與回應</td><td>完成主持互動</td><td>依賴稿件、互動生硬</td><td>未參與</td></tr>
+        <tr><td>交流禮儀</td><td>語速調整、確認理解、輪流發言</td><td>大致合宜</td><td>偶有狀況</td><td>影響交流</td></tr>
+        <tr><td>反思速記</td><td>兩題皆具體有洞察</td><td>完成速記</td><td>速記空泛</td><td>未完成</td></tr>
+      </table></div>
+    </div>
+  </details>
+
+  <details class="week wk4">
+    <summary><span class="wk">W18</span>期末口說測驗與學年總結<span class="axes">五力整合（總結性評量）</span></summary>
+    <div class="body">
+      <h4><span class="dot"></span>文本</h4>
+      <ul>
+        <li>口說測驗規範（企劃書規格）：個人導覽 1.5 分鐘＋集體反思 0.5 分鐘</li>
+        <li>學習歷程檔案三段架構（Forward／Project Introduction／Reflection: Facts–Vocab–Impact）</li>
+        <li>個人素材庫：初階＋進階全年產出</li>
+      </ul>
+      <h4><span class="dot"></span>課堂任務</h4>
+      <ol>
+        <li>XR 展間口說測驗：每人 1.5＋0.5 分鐘正式導覽（現場或錄影）</li>
+        <li>學年學習歷程檔案：整合初階與進階，各單元選一件代表作；Impact 段寫出「兩學期的移動力軌跡」</li>
+        <li>五力學年總回顧：三次雷達圖疊圖＋150 字「我的國際移動力故事」＋課程回饋</li>
+      </ol>
+      <h4><span class="dot"></span>評量尺規（單元四成果／期末總結性評量）</h4>
+      <div class="tablebox"><table>
+        <tr><th>規準</th><th>優秀 4</th><th>良好 3</th><th>基礎 2</th><th>待加強 1</th></tr>
+        <tr><td>導覽內容</td><td>策展理念清楚、展品詮釋有觀點</td><td>完整介紹展區</td><td>逐張描述缺乏論述</td><td>內容零散</td></tr>
+        <tr><td>語言表達</td><td>發音清晰、斷句自然、脫稿流暢</td><td>流暢、偶看稿</td><td>依賴唸稿</td><td>未能完成</td></tr>
+        <tr><td>集體反思</td><td>具體說出跨國協作的改變與證據</td><td>有反思</td><td>反思空泛</td><td>未反思</td></tr>
+        <tr><td>時間掌控</td><td>個人 1:25-1:35、集體 0:25-0:35</td><td>誤差 15 秒內</td><td>明顯過短過長</td><td>不足一半</td></tr>
+      </table></div>
+    </div>
+  </details>
+</section>
+
+<section id="matrix">
+  <h2 class="sec">進階 18 週 與五力對應總表</h2>
+  <div class="card tablebox">
+    <table>
+      <tr><th>單元</th><th>週</th><th>表達力</th><th>換位思考力</th><th>科技力</th><th>跨文化理解力</th><th>設計思考</th></tr>
+      <tr><td rowspan="5">一</td><td>1</td><td></td><td></td><td>●AI 初體驗</td><td></td><td>○目標設定</td></tr>
+      <tr><td>2</td><td></td><td>●偏見與排除</td><td>●查核三步驟</td><td>○刻板印象</td><td></td></tr>
+      <tr><td>3</td><td>○大綱重構</td><td>●為指定立場辯護</td><td>●AI 輔助研究</td><td></td><td></td></tr>
+      <tr><td>4</td><td>○潤稿取捨</td><td>●AI 攻防</td><td>●潤稿判斷</td><td></td><td></td></tr>
+      <tr><td>5</td><td>●立場辯論</td><td>●反駁三式</td><td>○協作透明</td><td></td><td></td></tr>
+      <tr><td rowspan="4">二</td><td>6</td><td>●介紹信</td><td>○讀者意識</td><td></td><td>●筆友文化</td><td></td></tr>
+      <tr><td>7</td><td>●修訂工藝</td><td>●換位預測</td><td></td><td></td><td></td></tr>
+      <tr><td>8</td><td></td><td>●差異詮釋</td><td></td><td>●三層次觀察</td><td></td></tr>
+      <tr><td>9</td><td>●深度信</td><td>●回應與深化</td><td></td><td>●真實交流</td><td></td></tr>
+      <tr><td rowspan="5">三</td><td>10</td><td>○申遺提案</td><td></td><td></td><td>●飲食與身分</td><td>○提案設計</td></tr>
+      <tr><td>11</td><td></td><td>●界線思辨</td><td></td><td>●儀式解碼</td><td></td></tr>
+      <tr><td>12</td><td>○立場短文</td><td>●steel-manning</td><td></td><td>○旅遊倫理</td><td></td></tr>
+      <tr><td>13</td><td></td><td></td><td>○資料查證</td><td>●遺產永續</td><td>●場次企劃</td></tr>
+      <tr><td>14</td><td>●主持研討</td><td>●多方歸納</td><td></td><td>●文化議題</td><td></td></tr>
+      <tr><td rowspan="4">四</td><td>15</td><td>○說明卡</td><td></td><td>●提示詞迭代</td><td>○主題深化</td><td>●策展論述</td></tr>
+      <tr><td>16</td><td>●導覽稿</td><td>○互評</td><td>●XR 建置</td><td></td><td>●集體策展</td></tr>
+      <tr><td>17</td><td>●即時互動</td><td>●臨場換位</td><td>○視訊工具</td><td>●跨國交流</td><td>○遊戲設計</td></tr>
+      <tr><td>18</td><td>●口說測驗</td><td>○協作反思</td><td>●XR 導覽</td><td>○軌跡回顧</td><td>○歷程統整</td></tr>
+    </table>
+    <p style="font-size:12px;color:var(--sub);font-weight:700;margin-top:8px">●＝主要培養　○＝輔助觸及</p>
+  </div>
+</section>
+
+<section id="grading">
+  <h2 class="sec">進階學期成績結構建議</h2>
+  <div class="card tablebox">
+    <table>
+      <tr><th>項目</th><th>佔比</th><th>對應週次</th></tr>
+      <tr><td>平時任務與課堂參與（各週尺規）</td><td>40%</td><td>全學期</td></tr>
+      <tr><td>單元一成果：未來世界立場辯論</td><td>10%</td><td>第 5 週</td></tr>
+      <tr><td>單元二成果：深度交流信＋文化觀察（期中）</td><td>15%</td><td>第 9 週</td></tr>
+      <tr><td>單元三成果：文化議題研討會</td><td>15%</td><td>第 14 週</td></tr>
+      <tr><td>單元四成果：口說測驗＋學年學習歷程檔案</td><td>20%</td><td>第 18 週</td></tr>
+    </table>
+    <div class="note">初階 18 週課程設計請見 <a href="course.html" style="color:#0f766e;font-weight:900">course.html</a>。</div>
+  </div>
+</section>
+
+</main>
+
+<footer>國際移動力 GLOBAL MOBILITY Ⅱ · 校訂必修進階課程設計 · <a href="course.html">初階課程</a></footer>
+
+</body>
+</html>
