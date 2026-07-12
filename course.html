@@ -1,0 +1,662 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>國際移動力 課程設計｜校訂必修</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&display=swap');
+:root{
+  --ink:#1e293b; --sub:#64748b; --line:#e2e8f0; --bg:#f8fafc; --card:#ffffff;
+  --u1:#2563eb; --u1bg:#eff6ff; --u2:#d97706; --u2bg:#fffbeb;
+  --u3:#059669; --u3bg:#ecfdf5; --u4:#c026d3; --u4bg:#fdf4ff;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Noto Sans TC',sans-serif;background:var(--bg);color:var(--ink);line-height:1.75}
+.wrap{max-width:960px;margin:0 auto;padding:0 20px}
+header.hero{background:linear-gradient(135deg,#0f172a 0%,#1e3a8a 100%);color:#fff;padding:72px 0 56px}
+.hero .tag{display:inline-block;background:#3b82f6;font-size:11px;font-weight:900;letter-spacing:.25em;padding:6px 16px;border-radius:999px;text-transform:uppercase}
+.hero h1{font-size:clamp(32px,6vw,52px);font-weight:900;letter-spacing:-.02em;margin:16px 0 8px}
+.hero p.sub{color:#93c5fd;font-weight:700;letter-spacing:.15em}
+.hero .powers{display:flex;flex-wrap:wrap;gap:10px;margin-top:28px}
+.hero .powers span{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);padding:6px 16px;border-radius:999px;font-size:13px;font-weight:700}
+nav.toc{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--line);overflow-x:auto}
+nav.toc .wrap{display:flex;gap:4px;padding:10px 20px;white-space:nowrap}
+nav.toc a{font-size:13px;font-weight:700;color:var(--sub);text-decoration:none;padding:6px 14px;border-radius:999px}
+nav.toc a:hover{background:var(--bg);color:var(--ink)}
+main{padding:48px 0 80px}
+section{margin-bottom:64px}
+h2.sec{font-size:26px;font-weight:900;letter-spacing:-.01em;display:flex;align-items:center;gap:12px;margin-bottom:20px}
+h2.sec::before{content:"";width:6px;height:28px;border-radius:3px;background:var(--ink)}
+.card{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:28px;margin-bottom:20px}
+table{width:100%;border-collapse:collapse;font-size:14px;margin:12px 0}
+th,td{border:1px solid var(--line);padding:10px 12px;text-align:left;vertical-align:top}
+th{background:var(--bg);font-weight:900;font-size:13px}
+.tablebox{overflow-x:auto}
+.unitgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:14px}
+.unitcard{border-radius:20px;padding:22px;color:#fff}
+.unitcard .n{font-size:11px;font-weight:900;letter-spacing:.2em;opacity:.8;text-transform:uppercase}
+.unitcard h3{font-size:20px;font-weight:900;margin:6px 0}
+.unitcard p{font-size:13px;font-weight:700;opacity:.9}
+.u1{background:var(--u1)}.u2{background:var(--u2)}.u3{background:var(--u3)}.u4{background:var(--u4)}
+.unit-head{border-radius:20px;padding:28px;margin-bottom:20px;color:#fff}
+.unit-head h2{font-size:24px;font-weight:900}
+.unit-head p{font-weight:700;opacity:.92;margin-top:6px;font-size:14px}
+details.week{background:var(--card);border:1px solid var(--line);border-radius:18px;margin-bottom:14px;overflow:hidden}
+details.week summary{cursor:pointer;list-style:none;padding:18px 24px;display:flex;align-items:center;gap:14px;font-weight:900;font-size:16px}
+details.week summary::-webkit-details-marker{display:none}
+details.week summary .wk{flex-shrink:0;font-size:11px;font-weight:900;padding:5px 12px;border-radius:999px;color:#fff}
+details.week summary .axes{margin-left:auto;font-size:11px;font-weight:700;color:var(--sub);flex-shrink:0}
+details.week summary::after{content:"＋";font-weight:400;color:var(--sub);margin-left:10px}
+details.week[open] summary::after{content:"－"}
+details.week .body{padding:0 24px 24px;border-top:1px solid var(--line)}
+.week h4{font-size:14px;font-weight:900;letter-spacing:.1em;margin:20px 0 8px;display:flex;align-items:center;gap:8px}
+.week h4 .dot{width:8px;height:8px;border-radius:50%}
+.week ul,.week ol{padding-left:22px;font-size:14.5px}
+.week li{margin-bottom:6px}
+.week li ul{margin-top:4px}
+.wk1 .wk,.wk1 h4 .dot{background:var(--u1)} .wk2 .wk,.wk2 h4 .dot{background:var(--u2)}
+.wk3 .wk,.wk3 h4 .dot{background:var(--u3)} .wk4 .wk,.wk4 h4 .dot{background:var(--u4)}
+.uh1{background:linear-gradient(135deg,var(--u1),#1e40af)} .uh2{background:linear-gradient(135deg,var(--u2),#b45309)}
+.uh3{background:linear-gradient(135deg,var(--u3),#047857)} .uh4{background:linear-gradient(135deg,var(--u4),#a21caf)}
+.note{background:var(--u1bg);border:1px solid #bfdbfe;border-radius:14px;padding:14px 18px;font-size:13.5px;font-weight:500;color:#1e40af;margin-top:14px}
+footer{background:#0f172a;color:#64748b;text-align:center;padding:40px 20px;font-size:12px;font-weight:700;letter-spacing:.2em}
+@media print{
+  nav.toc{display:none} details.week{page-break-inside:avoid}
+  details.week .body{display:block!important} details.week summary::after{display:none}
+}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="wrap">
+    <span class="tag">校訂必修 · School-Based Curriculum</span>
+    <h1>國際移動力 Global Mobility</h1>
+    <p class="sub">初階 18 週 · 5＋4／5＋4 四單元設計 · 專題導向學習 PBL</p>
+    <div class="powers">
+      <span>🗣 表達力</span><span>💭 換位思考力</span><span>💻 科技力</span><span>🌏 跨文化理解力</span><span>🧩 設計思考</span>
+    </div>
+  </div>
+</header>
+
+<nav class="toc">
+  <div class="wrap">
+    <a href="#overview">課程總覽</a>
+    <a href="#unit1">單元一 我的故事</a>
+    <a href="#unit2">單元二 看見世界</a>
+    <a href="#unit3">單元三 同理與設計</a>
+    <a href="#unit4">單元四 文化行動家</a>
+    <a href="#matrix">五力對應</a>
+    <a href="#grading">成績結構</a>
+  </div>
+</nav>
+
+<main class="wrap">
+
+<section id="overview">
+  <h2 class="sec">課程總覽</h2>
+  <div class="card">
+    <div class="tablebox"><table>
+      <tr><th style="width:130px">課程名稱</th><td>國際移動力 Global Mobility</td></tr>
+      <tr><th>課程屬性</th><td>校訂必修（專題導向學習 PBL）</td></tr>
+      <tr><th>適用對象</th><td>高中二年級（初階：上學期／進階：下學期或高三）</td></tr>
+      <tr><th>單元架構</th><td>初階採「5＋4／5＋4」四單元設計，每單元以一項單元成果收尾</td></tr>
+      <tr><th>學習成果</th><td>學習歷程檔案（Forward／Project Introduction／Reflection: Facts–Vocab–Impact）</td></tr>
+      <tr><th>認知路徑</th><td>自我 → 社會 → 全球：從自我敘事出發，進階走向真實跨國協作與行動方案</td></tr>
+    </table></div>
+  </div>
+  <div class="unitgrid">
+    <div class="unitcard u1"><div class="n">Unit 1 · 第 1-5 週</div><h3>我的故事</h3><p>Me Project<br>成果：My Story 敘事演講會</p></div>
+    <div class="unitcard u2"><div class="n">Unit 2 · 第 6-9 週</div><h3>看見世界</h3><p>Global Lens<br>成果：議題立場短講（期中）</p></div>
+    <div class="unitcard u3"><div class="n">Unit 3 · 第 10-14 週</div><h3>同理與設計</h3><p>Empathy in Action<br>成果：設計提案發表會</p></div>
+    <div class="unitcard u4"><div class="n">Unit 4 · 第 15-18 週</div><h3>文化行動家</h3><p>Culture Host<br>成果：文化主持＋檔案＋成果展</p></div>
+  </div>
+</section>
+
+<section id="unit1">
+  <div class="unit-head uh1">
+    <h2>單元一「我的故事 Me Project」第 1-5 週</h2>
+    <p>單元目標：從自我敘事出發，掌握「事件—轉折—領悟」敘事結構、RENNS 寫作準則與演講基本功。<br>單元成果：My Story 敘事演講會（第 5 週）</p>
+  </div>
+
+  <details class="week wk1" open>
+    <summary><span class="wk">W1</span>啟程：什麼是國際移動力？<span class="axes">設計思考 · 換位思考力</span></summary>
+    <div class="body">
+      <h4><span class="dot"></span>文本</h4>
+      <ul>
+        <li>課程簡報「適合對象」頁：樂於思考、勇於表達、關心自我世界他人、學習科技、挑戰自我</li>
+        <li>影片：OECD "Global Competence" 簡介短片（或 PISA Global Competence 圖解）</li>
+        <li>短文：〈為什麼未來人才需要移動力？〉（改寫自課程企劃書願景）</li>
+      </ul>
+      <h4><span class="dot"></span>課堂任務</h4>
+      <ol>
+        <li>破冰「世界座標」：依「去過最遠／最想去的國家」排成人體世界地圖，訪問左右同學一分鐘</li>
+        <li>五力自我評估雷達圖：1-5 分自評五力，寫下 50 字「我最想長出的能力」</li>
+        <li>建立數位學習檔案夾：認識學習歷程檔案三段架構</li>
+      </ol>
+      <h4><span class="dot"></span>評量尺規</h4>
+      <div class="tablebox"><table>
+        <tr><th>規準</th><th>優秀 4</th><th>良好 3</th><th>基礎 2</th><th>待加強 1</th></tr>
+        <tr><td>自我覺察</td><td>能具體舉出自身經驗佐證五力評分</td><td>評分合理並有部分說明</td><td>完成評分但說明籠統</td><td>僅完成評分</td></tr>
+        <tr><td>目標設定</td><td>目標具體可行且連結課程單元</td><td>目標明確但未連結課程</td><td>目標籠統</td><td>未寫出目標</td></tr>
+        <tr><td>課堂參與</td><td>主動訪問並分享同儕觀點</td><td>完成訪問與分享</td><td>被動參與</td><td>未參與活動</td></tr>
+      </table></div>
+    </div>
+  </details>
+
+  <details class="week wk1">
+    <summary><span class="wk">W2</span>生命事件心智圖<span class="axes">表達力 · 設計思考</span></summary>
+    <div class="body">
+      <h4><span class="dot"></span>文本</h4>
+      <ul>
+        <li>影片：Taylor Swift NYU 2022 畢業演說（節選 5 分鐘，聚焦三個 life lessons 的敘事結構）</li>
+        <li>講義：心智圖繪製指南（中心主題→三大生命事件→細節分支）</li>
+        <li>範例：企劃書「Me Project」架構——精煉三大生命事件，轉化為具邏輯厚度的敘事</li>
+      </ul>
+      <h4><span class="dot"></span>課堂任務</h4>
+      <ol>
+        <li>文本解構：找出演說中三個 lessons，分析「事件—轉折—領悟」敘事公式</li>
+        <li>個人心智圖：選出三個生命事件（一次失敗、一次相遇、一次選擇），各延伸「發生什麼／感受／學到什麼」三分支</li>
+        <li>兩兩互說：口述一個事件（中文 2 分鐘），同伴回饋「最想多聽哪個細節」</li>
+      </ol>
+      <h4><span class="dot"></span>評量尺規</h4>
+      <div class="tablebox"><table>
+        <tr><th>規準</th><th>優秀 4</th><th>良好 3</th><th>基礎 2</th><th>待加強 1</th></tr>
+        <tr><td>事件選擇</td><td>三事件皆具個人意義且面向多元</td><td>三事件完整但面向相近</td><td>僅兩事件成形</td><td>事件空泛或未完成</td></tr>
+        <tr><td>結構邏輯</td><td>每事件皆含事實、感受、領悟三層</td><td>多數事件具三層結構</td><td>分支零散、層次不清</td><td>僅有中心主題</td></tr>
+        <tr><td>口述表達</td><td>敘事流暢、有轉折與領悟</td><td>完整說完事件</td><td>需同伴提問才能延續</td><td>未能口述</td></tr>
+      </table></div>
+    </div>
+  </details>
+
+  <details class="week wk1">
+    <summary><span class="wk">W3</span>Show, Don't Tell 敘事寫作<span class="axes">表達力</span></summary>
+    <div class="body">
+      <h4><span class="dot"></span>文本</h4>
+      <ul>
+        <li>講義：RENNS 寫作準則（Reasons／Examples／Names／Numbers／Senses）</li>
+        <li>範例句對照：✗「大猩猩很害怕」→ ✓「一隻重達 400 磅的雄性大猩猩在看到人的一瞬間，嚇得竄入森林」</li>
+        <li>《Harry Potter and the Philosopher's Stone》第一章開頭（英文原文一頁，觀察人物描寫技法）</li>
+      </ul>
+      <h4><span class="dot"></span>課堂任務</h4>
+      <ol>
+        <li>暖身改寫：把「無力形容詞句」（She was sad. / The food was good. / He was brave.）改寫成畫面句</li>
+        <li>敘事初稿：選一個生命事件寫 120-150 字英文短文，至少使用 RENNS 三項元素，以「畫面」開場</li>
+        <li>RENNS 自我檢核：在文稿旁標註使用的 R-E-N-N-S 元素</li>
+      </ol>
+      <h4><span class="dot"></span>評量尺規</h4>
+      <div class="tablebox"><table>
+        <tr><th>規準</th><th>優秀 4</th><th>良好 3</th><th>基礎 2</th><th>待加強 1</th></tr>
+        <tr><td>畫面感</td><td>開場即有具體場景，全文以動作與感官推進</td><td>有明確畫面但部分仍用抽象形容</td><td>畫面零星、以陳述為主</td><td>全文皆為抽象陳述</td></tr>
+        <tr><td>RENNS 運用</td><td>準確運用三項以上且自然融入</td><td>運用三項但略顯生硬</td><td>僅運用一至二項</td><td>未見 RENNS 元素</td></tr>
+        <tr><td>語言正確性</td><td>文法拼字錯誤極少</td><td>少量錯誤不影響理解</td><td>錯誤較多但可讀</td><td>錯誤影響理解</td></tr>
+        <tr><td>字數與完成度</td><td>達字數且結構完整</td><td>達字數</td><td>未達字數但有段落</td><td>僅零散句子</td></tr>
+      </table></div>
+    </div>
+  </details>
+
+  <details class="week wk1">
+    <summary><span class="wk">W4</span>同儕互評與二稿修訂<span class="axes">換位思考力 · 表達力</span></summary>
+    <div class="body">
+      <h4><span class="dot"></span>文本</h4>
+      <ul>
+        <li>講義：批改代碼表（vf 動詞形式、vt 時態、wc 選字、wo 字序、gr 文法、sp 拼字；○ 標點、× 贅字、︿ 漏字、rw 重寫）</li>
+        <li>講義：三步同儕互評協定——①代碼標註 ②相互修正 ③後設反思（個人錯誤清單）</li>
+        <li>講義：演講大綱卡格式——開場鉤子／畫面段／領悟句，只寫關鍵詞</li>
+      </ul>
+      <h4><span class="dot"></span>課堂任務</h4>
+      <ol>
+        <li>同儕互評工作坊：交換初稿標註→討論修正→寫下「我最常犯的兩種錯誤」</li>
+        <li>二稿修訂：根據互評完成修訂稿，上傳學習檔案夾</li>
+        <li>演講轉換：把修訂稿濃縮成大綱卡，兩兩試講一輪，為下週發表會暖身</li>
+      </ol>
+      <h4><span class="dot"></span>評量尺規</h4>
+      <div class="tablebox"><table>
+        <tr><th>規準</th><th>優秀 4</th><th>良好 3</th><th>基礎 2</th><th>待加強 1</th></tr>
+        <tr><td>互評品質</td><td>代碼標註準確且提出具體修改建議</td><td>標註大致準確</td><td>標註零星或籠統</td><td>未完成互評</td></tr>
+        <tr><td>修訂幅度</td><td>二稿明顯回應標註並提升畫面感</td><td>修正多數標註錯誤</td><td>僅修正少數錯誤</td><td>未修訂</td></tr>
+        <tr><td>後設反思</td><td>錯誤清單具體且能舉例說明</td><td>完成錯誤清單</td><td>清單籠統</td><td>未建立清單</td></tr>
+        <tr><td>大綱轉換</td><td>大綱卡三段俱全、僅關鍵詞</td><td>大綱完整</td><td>大綱接近逐字稿</td><td>未完成</td></tr>
+      </table></div>
+    </div>
+  </details>
+
+  <details class="week wk1">
+    <summary><span class="wk">W5</span>單元成果：My Story 敘事演講會<span class="axes">表達力（總結性評量）</span></summary>
+    <div class="body">
+      <h4><span class="dot"></span>文本</h4>
+      <ul>
+        <li>講義：演講技巧摘要——眼神、停頓、開場鉤子、收尾領悟句</li>
+        <li>範例影片：一則 90 秒個人敘事演講（TED Youth 或學長姊影片，全班拆解 hook 與停頓）</li>
+        <li>學生自備：修訂稿與演講大綱卡</li>
+      </ul>
+      <h4><span class="dot"></span>課堂任務</h4>
+      <ol>
+        <li>小組排練：互相檢查「開場有畫面嗎？領悟句清楚嗎？」試講並微調</li>
+        <li>My Story 敘事演講會：每人 60-90 秒正式發表；聽者以「我聽到的領悟是……」一句話回饋</li>
+        <li>單元反思：以 Facts–Vocab–Impact 格式寫下單元一收穫，連同作品上傳檔案夾</li>
+      </ol>
+      <h4><span class="dot"></span>評量尺規（單元一成果）</h4>
+      <div class="tablebox"><table>
+        <tr><th>規準</th><th>優秀 4</th><th>良好 3</th><th>基礎 2</th><th>待加強 1</th></tr>
+        <tr><td>敘事結構</td><td>鉤子開場、畫面推進、領悟收尾一氣呵成</td><td>三段俱全</td><td>有故事但結構鬆散</td><td>敘事零散</td></tr>
+        <tr><td>表達技巧</td><td>脫稿、眼神、停頓得宜，有感染力</td><td>完整流暢說完</td><td>依賴大綱卡逐句唸</td><td>未能完成</td></tr>
+        <tr><td>傾聽回饋</td><td>回饋準確抓到講者領悟並延伸提問</td><td>回饋切題</td><td>回饋空泛</td><td>未給回饋</td></tr>
+        <tr><td>單元反思</td><td>Facts–Vocab–Impact 三項具體</td><td>三項俱全</td><td>反思籠統</td><td>未完成</td></tr>
+      </table></div>
+    </div>
+  </details>
+</section>
+
+<section id="unit2">
+  <div class="unit-head uh2">
+    <h2>單元二「看見世界 Global Lens」第 6-9 週</h2>
+    <p>單元目標：建立世界圖像與議題語言，從影像與數據練習換位思考，以立場短講收尾。<br>單元成果：議題立場短講（第 9 週，期中總結性評量）</p>
+  </div>
+
+  <details class="week wk2">
+    <summary><span class="wk">W6</span>世界圖像：國際組織與 SDGs<span class="axes">跨文化理解力 · 科技力</span></summary>
+    <div class="body">
+      <h4><span class="dot"></span>文本</h4>
+      <ul>
+        <li>影片：國際組織與國家介紹指定影片＋SDGs 宣傳片 "We The People for The Global Goals"</li>
+        <li>圖解：聯合國系統一頁圖（UN、UNESCO、UNHCR、WHO、UNICEF 分工）</li>
+        <li>網站文本：UN SDGs 17 項目標官方頁面（中英對照瀏覽）</li>
+      </ul>
+      <h4><span class="dot"></span>課堂任務</h4>
+      <ol>
+        <li>國際組織拼圖（Jigsaw）：五組各認領一組織，查證「成立目的、總部、近期行動」，回原小組互教</li>
+        <li>數位共編「組織名片」：Google Slides 一頁（Logo、宗旨、近期行動、來源），標註主責 SDG</li>
+        <li>Kahoot 快問快答：國際組織×SDGs 即時檢核</li>
+      </ol>
+      <h4><span class="dot"></span>評量尺規</h4>
+      <div class="tablebox"><table>
+        <tr><th>規準</th><th>優秀 4</th><th>良好 3</th><th>基礎 2</th><th>待加強 1</th></tr>
+        <tr><td>資訊正確</td><td>三項資訊皆正確且為近一年行動</td><td>資訊正確但行動較舊</td><td>一項資訊有誤</td><td>多項錯誤或抄襲貼上</td></tr>
+        <tr><td>SDG 連結</td><td>準確標註主責 SDG 並說明理由</td><td>標註正確</td><td>標註模糊</td><td>未標註</td></tr>
+        <tr><td>來源引用</td><td>附可信來源並能說明查證過程</td><td>附來源連結</td><td>來源不明確</td><td>未附來源</td></tr>
+        <tr><td>互教表現</td><td>能不看稿解說並回答提問</td><td>能完整解說</td><td>照稿唸</td><td>未參與互教</td></tr>
+      </table></div>
+    </div>
+  </details>
+
+  <details class="week wk2">
+    <summary><span class="wk">W7</span>一張照片的故事（World Press Photo）<span class="axes">換位思考力 · 表達力</span></summary>
+    <div class="body">
+      <h4><span class="dot"></span>文本</h4>
+      <ul>
+        <li>World Press Photo 年度得獎作品線上圖輯（每組指定一大洲深度探究）</li>
+        <li>講義：影像識讀四問——描述／脈絡／意圖／立場</li>
+        <li>短文：一則得獎照片的攝影師自述（中英對照）</li>
+      </ul>
+      <h4><span class="dot"></span>課堂任務</h4>
+      <ol>
+        <li>靜默觀看：每組三張照片，靜默一分鐘只「描述」不「評價」</li>
+        <li>四問工作單：聚焦「畫面中的人／畫面外的家屬／攝影師」三種身分，各寫一句第一人稱獨白</li>
+        <li>照片×SDG 速配：全班連連看，把影像感受轉成議題語言</li>
+        <li>Photo Talk：每組代表 90 秒發表「這張照片想讓世界聽見什麼」</li>
+      </ol>
+      <h4><span class="dot"></span>評量尺規</h4>
+      <div class="tablebox"><table>
+        <tr><th>規準</th><th>優秀 4</th><th>良好 3</th><th>基礎 2</th><th>待加強 1</th></tr>
+        <tr><td>描述與評價分離</td><td>能純粹描述畫面再進入詮釋</td><td>大致區分描述與評價</td><td>描述夾雜大量評價</td><td>直接下結論</td></tr>
+        <tr><td>換位深度</td><td>三種身分獨白皆具體且情感立場有區隔</td><td>完成三種身分但區隔不明顯</td><td>僅完成一至二種身分</td><td>獨白空泛或未完成</td></tr>
+        <tr><td>議題連結</td><td>SDG 速配準確並能說明理由</td><td>速配大致正確</td><td>速配牽強</td><td>未連結</td></tr>
+        <tr><td>口頭評論</td><td>90 秒內觀點清楚、有畫面描述支撐</td><td>完整發表</td><td>發表零散</td><td>未發表</td></tr>
+      </table></div>
+    </div>
+  </details>
+
+  <details class="week wk2">
+    <summary><span class="wk">W8</span>婦女人權：站位思辨與世界咖啡館<span class="axes">換位思考力 · 表達力</span></summary>
+    <div class="body">
+      <h4><span class="dot"></span>文本</h4>
+      <ul>
+        <li>影片：Malala Yousafzai 聯合國演說節選（約 4 分鐘）</li>
+        <li>課程簡報專題文本：〈呼籲各國消除對女性不公平的社會習俗，落實 2030 聯合國永續發展目標〉（SDG 5）</li>
+        <li>案例集講義：童婚習俗、女孩受教權、職場同工同酬、月經貧窮＋Global Gender Gap Report 圖表</li>
+      </ul>
+      <h4><span class="dot"></span>課堂任務</h4>
+      <ol>
+        <li>四角站位：依「非常同意～非常不同意」站位並說明理由，聆聽異見後可換位移動</li>
+        <li>世界咖啡館（兩輪）：四桌各設案例與桌長，引導三問——對誰不公平？為何延續？改變起點在哪？</li>
+        <li>倡議草案：收斂成「一句倡議標語＋一個具體行動」，作為下週短講素材</li>
+      </ol>
+      <h4><span class="dot"></span>評量尺規</h4>
+      <div class="tablebox"><table>
+        <tr><th>規準</th><th>優秀 4</th><th>良好 3</th><th>基礎 2</th><th>待加強 1</th></tr>
+        <tr><td>立場論述</td><td>站位理由具體且引用文本或數據</td><td>理由清楚</td><td>理由籠統</td><td>未說明理由</td></tr>
+        <tr><td>聆聽與換位</td><td>能複述異見重點並回應或修正立場</td><td>能複述異見</td><td>僅堅持己見</td><td>未參與討論</td></tr>
+        <tr><td>討論貢獻</td><td>每輪皆有觀點且能回應他人</td><td>多數輪次有貢獻</td><td>偶有發言</td><td>未發言</td></tr>
+        <tr><td>倡議草案</td><td>標語有力、行動具體可執行</td><td>標語與行動完整</td><td>僅有標語或僅有行動</td><td>未完成</td></tr>
+      </table></div>
+    </div>
+  </details>
+
+  <details class="week wk2">
+    <summary><span class="wk">W9</span>單元成果：議題立場短講（期中評量）<span class="axes">表達力（總結性評量）</span></summary>
+    <div class="body">
+      <h4><span class="dot"></span>文本</h4>
+      <ul>
+        <li>講義：立場短講四段架構——Hook → Stance → Evidence（RENNS）→ Call to Action</li>
+        <li>範例影片：TED-Ed／TED Youth 議題演講一則（全班拆解四段架構）</li>
+        <li>學生自備：照片×SDG 連結、倡議草案</li>
+      </ul>
+      <h4><span class="dot"></span>課堂任務</h4>
+      <ol>
+        <li>短講準備：依四段架構完成大綱卡（只寫關鍵詞）</li>
+        <li>議題立場短講：每人 2 分鐘，至少兩項 RENNS 證據與一個行動呼籲</li>
+        <li>同儕評分：評分卡三問＋寫下「講者最有力的一句話」</li>
+        <li>單元反思：Facts–Vocab–Impact 格式上傳檔案夾</li>
+      </ol>
+      <h4><span class="dot"></span>評量尺規（單元二成果／期中總結性評量）</h4>
+      <div class="tablebox"><table>
+        <tr><th>規準</th><th>優秀 4</th><th>良好 3</th><th>基礎 2</th><th>待加強 1</th></tr>
+        <tr><td>立場與結構</td><td>四段架構完整、立場鮮明貫穿全場</td><td>架構完整、立場清楚</td><td>有立場但結構鬆散</td><td>立場不明</td></tr>
+        <tr><td>證據運用</td><td>兩項以上 RENNS 證據且準確有力</td><td>兩項證據</td><td>僅一項或薄弱</td><td>無證據</td></tr>
+        <tr><td>表達技巧</td><td>脫稿、眼神、停頓、音量皆佳</td><td>偶看大綱卡、流暢</td><td>依賴唸稿</td><td>未能完成</td></tr>
+        <tr><td>行動呼籲</td><td>具體可行且呼應證據</td><td>有明確呼籲</td><td>呼籲空泛</td><td>無呼籲</td></tr>
+        <tr><td>時間掌控</td><td>1:50–2:10 內完成</td><td>誤差 30 秒內</td><td>明顯過短或過長</td><td>不足 1 分鐘</td></tr>
+      </table></div>
+    </div>
+  </details>
+</section>
+
+<section id="unit3">
+  <div class="unit-head uh3">
+    <h2>單元三「同理與設計 Empathy in Action」第 10-14 週</h2>
+    <p>單元目標：以難民議題與生態城市為場域，走完設計思考完整循環，結合 AI 工具產出解方提案。<br>單元成果：設計提案發表會（第 14 週）</p>
+  </div>
+
+  <details class="week wk3">
+    <summary><span class="wk">W10</span>難民議題 I：離散的旅程<span class="axes">換位思考力 · 跨文化理解力</span></summary>
+    <div class="body">
+      <h4><span class="dot"></span>文本</h4>
+      <ul>
+        <li>圖像文本：《The Journey》（Francesca Sanna 繪本）或 UNHCR 難民故事圖文</li>
+        <li>數據文本：UNHCR Global Trends 年度報告重點頁</li>
+        <li>影片：UNHCR／BBC 難民旅程紀實短片（3-5 分鐘）</li>
+      </ul>
+      <h4><span class="dot"></span>課堂任務</h4>
+      <ol>
+        <li>打包抉擇：「戰火將至，只能帶 5 樣東西」，比較「必需」與「不捨」</li>
+        <li>旅程地圖：標出真實難民路線，三節點各標註「最大的困難」與「最需要的東西」</li>
+        <li>換位日記（課後）：以一個節點為場景寫 100-120 字第一人稱日記</li>
+      </ol>
+      <h4><span class="dot"></span>評量尺規</h4>
+      <div class="tablebox"><table>
+        <tr><th>規準</th><th>優秀 4</th><th>良好 3</th><th>基礎 2</th><th>待加強 1</th></tr>
+        <tr><td>事實正確</td><td>路線與節點皆有文本或資料依據</td><td>路線大致正確</td><td>路線粗略</td><td>路線杜撰</td></tr>
+        <tr><td>困難與需求分析</td><td>三節點具體且有差異</td><td>三節點皆完成</td><td>僅完成部分節點</td><td>未完成</td></tr>
+        <tr><td>換位日記</td><td>場景、情感、細節兼具，讀來真實</td><td>場景與情感完整</td><td>敘述抽象</td><td>未完成</td></tr>
+        <tr><td>同理表現</td><td>能區分「同情」與「同理」並以後者發言</td><td>發言展現理解</td><td>停留旁觀評論</td><td>出現刻板或嘲弄語言</td></tr>
+      </table></div>
+    </div>
+  </details>
+
+  <details class="week wk3">
+    <summary><span class="wk">W11</span>難民議題 II：設計思考同理實作<span class="axes">設計思考 · 科技力</span></summary>
+    <div class="body">
+      <h4><span class="dot"></span>文本</h4>
+      <ul>
+        <li>講義：設計思考五步驟（同理→定義→發想→原型→測試）</li>
+        <li>案例文本：IKEA「Better Shelter」難民組合屋設計案例</li>
+        <li>素材：第 10 週旅程地圖的「困難與需求」紀錄</li>
+      </ul>
+      <h4><span class="dot"></span>課堂任務</h4>
+      <ol>
+        <li>同理心地圖：選定難民角色，完成 Say／Think／Feel／Need 四象限</li>
+        <li>HMW 問題定義：把最關鍵的 Need 改寫成「我們如何能……」問句</li>
+        <li>Crazy 8s：每人 8 分鐘 8 格草圖，小組投票選出一案</li>
+        <li>紙上原型：畫出方案原型，檢索既有方案佐證——第 14 週發表會深化</li>
+      </ol>
+      <h4><span class="dot"></span>評量尺規</h4>
+      <div class="tablebox"><table>
+        <tr><th>規準</th><th>優秀 4</th><th>良好 3</th><th>基礎 2</th><th>待加強 1</th></tr>
+        <tr><td>同理心地圖</td><td>四象限具體且與文本人物一致</td><td>四象限完整</td><td>象限內容籠統</td><td>未完成</td></tr>
+        <tr><td>HMW 定義</td><td>問句聚焦單一需求、不預設解法</td><td>問句明確</td><td>問句過大或已含答案</td><td>未定義</td></tr>
+        <tr><td>發想廣度</td><td>人人完成 8 格且方案多元</td><td>多數人完成</td><td>少數人完成</td><td>未進行</td></tr>
+        <tr><td>原型品質</td><td>原型清楚回應 HMW</td><td>原型完整</td><td>原型與需求連結薄弱</td><td>未完成</td></tr>
+      </table></div>
+    </div>
+  </details>
+
+  <details class="week wk3">
+    <summary><span class="wk">W12</span>生態城市 I：看見永續的城市<span class="axes">設計思考 · 跨文化理解力</span></summary>
+    <div class="body">
+      <h4><span class="dot"></span>文本</h4>
+      <ul>
+        <li>影片：生態城市紀實短片（哥本哈根／新加坡／庫里奇巴擇一）</li>
+        <li>課程簡報單元素材：生態城市（Eco-City）</li>
+        <li>圖表文本：SDG 11 細項目標＋城市數據對照表（綠地、大眾運輸、人均碳排——含台北）</li>
+      </ul>
+      <h4><span class="dot"></span>課堂任務</h4>
+      <ol>
+        <li>城市偵探：認領一座國際生態城市，完成「城市檔案卡」（政策、成效數據、照片、來源）</li>
+        <li>台北體檢：對照數據表討論台北最落後項與生活體感，寫出「台北最需要改變的一件事」</li>
+        <li>課後任務：拍一張「住家或學校周邊最不永續的角落」照片上傳</li>
+      </ol>
+      <h4><span class="dot"></span>評量尺規</h4>
+      <div class="tablebox"><table>
+        <tr><th>規準</th><th>優秀 4</th><th>良好 3</th><th>基礎 2</th><th>待加強 1</th></tr>
+        <tr><td>政策掌握</td><td>三項作法具體且說明運作方式</td><td>三項作法完整</td><td>僅列名稱未說明</td><td>未完成</td></tr>
+        <tr><td>數據佐證</td><td>引用成效數據且標註來源</td><td>有數據</td><td>數據模糊或無來源</td><td>無數據</td></tr>
+        <tr><td>在地連結</td><td>台北對照具體、有生活體感舉例</td><td>完成台北對照</td><td>對照籠統</td><td>未對照</td></tr>
+        <tr><td>協作查證</td><td>分工查證、交叉核對來源</td><td>完成查證</td><td>單一來源</td><td>抄襲貼上</td></tr>
+      </table></div>
+    </div>
+  </details>
+
+  <details class="week wk3">
+    <summary><span class="wk">W13</span>生態城市 II：AI 輔助城市提案<span class="axes">設計思考 · 科技力</span></summary>
+    <div class="body">
+      <h4><span class="dot"></span>文本</h4>
+      <ul>
+        <li>素材：第 12 週城市檔案卡、學生「不永續角落」照片</li>
+        <li>講義：設計思考五步驟複習（本週再走一次循環）</li>
+        <li>範例：青少年參與城市改造的新聞（參與式預算、通學巷改造）</li>
+      </ul>
+      <h4><span class="dot"></span>課堂任務</h4>
+      <ol>
+        <li>照片牆與同理：選定角落，訪問拍攝者「誰在使用？誰被忽略？」完成簡版同理心地圖</li>
+        <li>HMW＋借鏡發想：定義問句，從城市檔案卡「借一個國外作法」融入方案</li>
+        <li>AI 輔助提案圖：以 AI 生成「改造後想像圖」，保留提示詞文字，練習提示詞設計</li>
+      </ol>
+      <h4><span class="dot"></span>評量尺規</h4>
+      <div class="tablebox"><table>
+        <tr><th>規準</th><th>優秀 4</th><th>良好 3</th><th>基礎 2</th><th>待加強 1</th></tr>
+        <tr><td>問題定義</td><td>HMW 聚焦真實使用者需求</td><td>HMW 明確</td><td>問題過大或空泛</td><td>未定義</td></tr>
+        <tr><td>國際借鏡</td><td>準確引用國外作法並說明在地化調整</td><td>引用國外作法</td><td>借鏡與方案脫節</td><td>未借鏡</td></tr>
+        <tr><td>提示詞設計</td><td>提示詞具體，生成圖切合方案</td><td>生成圖大致切合</td><td>生成圖與方案關聯弱</td><td>未完成</td></tr>
+        <tr><td>同理訪問</td><td>訪問拍攝者並將洞察寫入方案</td><td>完成訪問</td><td>訪問流於形式</td><td>未訪問</td></tr>
+      </table></div>
+    </div>
+  </details>
+
+  <details class="week wk3">
+    <summary><span class="wk">W14</span>單元成果：設計提案發表會<span class="axes">設計思考 · 表達力（總結性評量）</span></summary>
+    <div class="body">
+      <h4><span class="dot"></span>文本</h4>
+      <ul>
+        <li>講義：提案 Pitch 四段架構——問題→洞察→方案→呼籲</li>
+        <li>學生自備：難民議題紙上原型（W11）或城市提案 AI 想像圖（W13），兩案擇一深化</li>
+      </ul>
+      <h4><span class="dot"></span>課堂任務</h4>
+      <ol>
+        <li>提案深化：整合先前回饋，補強「可行性」段（成本、對象、既有案例佐證）</li>
+        <li>三分鐘小組 Pitch：「現況 vs. 原型／AI 想像圖」對照呈現</li>
+        <li>全班互評與投票：每人兩票投「最想支持的方案」＋一則具體回饋</li>
+        <li>單元反思：Facts–Vocab–Impact 格式上傳檔案夾</li>
+      </ol>
+      <h4><span class="dot"></span>評量尺規（單元三成果）</h4>
+      <div class="tablebox"><table>
+        <tr><th>規準</th><th>優秀 4</th><th>良好 3</th><th>基礎 2</th><th>待加強 1</th></tr>
+        <tr><td>問題與洞察</td><td>困境具體、同理洞察有依據</td><td>問題與洞察完整</td><td>問題清楚但洞察薄弱</td><td>問題模糊</td></tr>
+        <tr><td>方案可行性</td><td>成本對象清楚、有既有案例佐證</td><td>可行性大致交代</td><td>可行性含糊</td><td>未交代</td></tr>
+        <tr><td>提案表達</td><td>四段完整、對照呈現有說服力</td><td>四段完整</td><td>發表零散</td><td>未發表</td></tr>
+        <tr><td>團隊協作</td><td>深化明顯回應回饋、分工平均</td><td>有深化</td><td>僅重複先前內容</td><td>未深化</td></tr>
+      </table></div>
+    </div>
+  </details>
+</section>
+
+<section id="unit4">
+  <div class="unit-head uh4">
+    <h2>單元四「文化行動家 Culture Host」第 15-18 週</h2>
+    <p>單元目標：以台灣文化為題完成主持實戰，統整全學期產出為學習歷程檔案，回顧五力成長。<br>單元成果：文化主題主持（W16）＋學習歷程檔案（W17）＋期末成果展（W18）</p>
+  </div>
+
+  <details class="week wk4">
+    <summary><span class="wk">W15</span>文化主題主持 I：選題與發音基本功<span class="axes">跨文化理解力 · 表達力</span></summary>
+    <div class="body">
+      <h4><span class="dot"></span>文本</h4>
+      <ul>
+        <li>歷屆學長姊學習成果範例（台灣美食北中南、音樂類型、台灣樂團與愛情電影等主題）</li>
+        <li>講義：Discussion Leading 主持三件事——開場引導、開放式提問×3、串場與收尾</li>
+        <li>發音講義：易混淆子母音對（/θ/-/s/、/l/-/r/、長短母音）、斷句與連音規則</li>
+      </ul>
+      <h4><span class="dot"></span>課堂任務</h4>
+      <ol>
+        <li>範例解構：閱讀學長姊成果，歸納兩條可借用的主持技巧</li>
+        <li>選題工作坊：選定台灣文化主題，完成主持企劃單（賣點、三個開放式問題、素材規劃）</li>
+        <li>發音操練：以企劃關鍵詞練習，錄 30 秒「主題預告」上傳作為發音前測</li>
+      </ol>
+      <h4><span class="dot"></span>評量尺規</h4>
+      <div class="tablebox"><table>
+        <tr><th>規準</th><th>優秀 4</th><th>良好 3</th><th>基礎 2</th><th>待加強 1</th></tr>
+        <tr><td>選題與賣點</td><td>主題有文化意涵，賣點一句話吸引人</td><td>主題與賣點完整</td><td>主題過大或籠統</td><td>未選定</td></tr>
+        <tr><td>提問設計</td><td>三題皆開放式且能引發不同觀點</td><td>三題完整</td><td>有封閉式提問混入</td><td>少於兩題</td></tr>
+        <tr><td>發音錄音</td><td>關鍵詞發音清晰、有斷句意識</td><td>大致清晰</td><td>多處含糊但可辨</td><td>未錄製</td></tr>
+        <tr><td>範例學習</td><td>歸納技巧具體且用進企劃</td><td>歸納兩條技巧</td><td>歸納籠統</td><td>未完成</td></tr>
+      </table></div>
+    </div>
+  </details>
+
+  <details class="week wk4">
+    <summary><span class="wk">W16</span>文化主題主持 II：正式主持<span class="axes">表達力 · 跨文化理解力 · 換位思考力</span></summary>
+    <div class="body">
+      <h4><span class="dot"></span>文本</h4>
+      <ul>
+        <li>學生自製素材：主持企劃單、簡報或影音素材</li>
+        <li>講義：聽眾回饋單——「我學到的一件事／最想追問的問題／主持人做得最好的地方」</li>
+      </ul>
+      <h4><span class="dot"></span>課堂任務</h4>
+      <ol>
+        <li>正式主持場：每組 8-10 分鐘——開場（2 分）→三問引導討論（5 分）→收尾（1 分）；須點名三位非本組同學發言並回應</li>
+        <li>聽眾任務：填回饋單＋至少舉手發言一次</li>
+        <li>賽後復盤：寫下「下次主持要改進的一件事」上傳檔案夾</li>
+      </ol>
+      <h4><span class="dot"></span>評量尺規</h4>
+      <div class="tablebox"><table>
+        <tr><th>規準</th><th>優秀 4</th><th>良好 3</th><th>基礎 2</th><th>待加強 1</th></tr>
+        <tr><td>內容深度</td><td>文化主題有脈絡與觀點，非僅羅列資訊</td><td>內容完整正確</td><td>資訊堆疊、缺乏觀點</td><td>內容單薄</td></tr>
+        <tr><td>引導功力</td><td>能追問、串聯觀點，討論熱絡</td><td>完成三問並回應發言</td><td>問了但未回應發言</td><td>自問自答</td></tr>
+        <tr><td>口語表達</td><td>發音清晰、斷句自然、脫稿主持</td><td>大致流暢、偶看稿</td><td>依賴唸稿</td><td>未能主持</td></tr>
+        <tr><td>時間與分工</td><td>時間精準、組員角色平均</td><td>時間大致準確</td><td>明顯超時或一人主秀</td><td>未完成</td></tr>
+        <tr><td>聽眾參與（個人）</td><td>主動發言且回饋單具體</td><td>發言一次、回饋完整</td><td>僅交回饋單</td><td>未參與</td></tr>
+      </table></div>
+    </div>
+  </details>
+
+  <details class="week wk4">
+    <summary><span class="wk">W17</span>學習歷程檔案工作坊<span class="axes">表達力 · 設計思考 · 科技力</span></summary>
+    <div class="body">
+      <h4><span class="dot"></span>文本</h4>
+      <ul>
+        <li>講義：學習歷程檔案三段架構——<b>Forward</b> 中文 100 字內／<b>Project Introduction</b> 雙語（中約 30 字、英約 50 字）／<b>Reflection</b>＝Facts＋Vocab＋Impact</li>
+        <li>範例：歷屆優秀學習成果檔案一份（標註結構優點）</li>
+        <li>個人素材庫：四個單元的反思紀錄與代表作品</li>
+      </ul>
+      <h4><span class="dot"></span>課堂任務</h4>
+      <ol>
+        <li>素材盤點：每單元勾選一件代表作品（共 4 件），寫下「它證明我長出了什麼能力」</li>
+        <li>三段撰寫：完成 Forward 與雙語 Introduction；Reflection 整併四次單元反思成文</li>
+        <li>同儕健檢：三問檢核（前言有濃縮嗎？雙語清晰度？Impact 具體嗎？），修訂後上傳</li>
+      </ol>
+      <h4><span class="dot"></span>評量尺規（期末總結性評量之一）</h4>
+      <div class="tablebox"><table>
+        <tr><th>規準</th><th>優秀 4</th><th>良好 3</th><th>基礎 2</th><th>待加強 1</th></tr>
+        <tr><td>架構完整</td><td>三段俱全且符合字數規格</td><td>三段俱全</td><td>缺一段或字數明顯不符</td><td>僅有作品堆疊</td></tr>
+        <tr><td>作品選擇</td><td>四單元代表作俱全且皆說明能力證據</td><td>作品完整有說明</td><td>有作品但說明空泛</td><td>作品零散</td></tr>
+        <tr><td>反思深度</td><td>Facts 具體、Vocab 準確、Impact 連結個人改變</td><td>三項俱全</td><td>反思停留「學到很多」</td><td>未反思</td></tr>
+        <tr><td>語言品質</td><td>雙語清晰、錯誤極少</td><td>少量錯誤</td><td>錯誤較多但可讀</td><td>影響理解</td></tr>
+      </table></div>
+    </div>
+  </details>
+
+  <details class="week wk4">
+    <summary><span class="wk">W18</span>期末成果展與五力回顧<span class="axes">五力整合（總結性評量）</span></summary>
+    <div class="body">
+      <h4><span class="dot"></span>文本</h4>
+      <ul>
+        <li>學生自製素材：學習歷程檔案、四單元代表作品、第 1 週五力雷達圖（前測）</li>
+        <li>講義：三分鐘成果簡報架構——最滿意的作品／它經歷的修訂／雷達圖變化</li>
+      </ul>
+      <h4><span class="dot"></span>課堂任務</h4>
+      <ol>
+        <li>期末成果展：教室依四單元佈置四站 Gallery Walk＋每人 3 分鐘個人成果簡報</li>
+        <li>五力後測：重繪雷達圖與第 1 週疊圖，寫 100 字「我的移動力起點與現在」</li>
+        <li>進階預告：寫下「進階課我最想挑戰的一項」（AI 批判思考／跨國書信／XR 策展）</li>
+      </ol>
+      <h4><span class="dot"></span>評量尺規（期末總結性評量之二）</h4>
+      <div class="tablebox"><table>
+        <tr><th>規準</th><th>優秀 4</th><th>良好 3</th><th>基礎 2</th><th>待加強 1</th></tr>
+        <tr><td>作品詮釋</td><td>說清楚作品的修訂歷程與突破點</td><td>完整介紹作品</td><td>僅描述內容未談歷程</td><td>介紹零散</td></tr>
+        <tr><td>成長證據</td><td>雷達圖對照具體、舉出行為證據</td><td>有對照與說明</td><td>對照籠統</td><td>未對照</td></tr>
+        <tr><td>表達整合</td><td>運用本學期技巧（畫面開場、RENNS、停頓）</td><td>表達流暢</td><td>依賴唸稿</td><td>未完成</td></tr>
+        <tr><td>時間掌控</td><td>2:50–3:10 內完成</td><td>誤差 30 秒內</td><td>明顯過短過長</td><td>不足 90 秒</td></tr>
+      </table></div>
+    </div>
+  </details>
+</section>
+
+<section id="matrix">
+  <h2 class="sec">初階 18 週 與五力對應總表</h2>
+  <div class="card tablebox">
+    <table>
+      <tr><th>單元</th><th>週</th><th>表達力</th><th>換位思考力</th><th>科技力</th><th>跨文化理解力</th><th>設計思考</th></tr>
+      <tr><td rowspan="5">一</td><td>1</td><td>○</td><td>○</td><td></td><td></td><td>●同理自己</td></tr>
+      <tr><td>2</td><td>●口述敘事</td><td></td><td></td><td></td><td>●定義</td></tr>
+      <tr><td>3</td><td>●RENNS 寫作</td><td></td><td></td><td></td><td></td></tr>
+      <tr><td>4</td><td>●修訂與大綱</td><td>●讀者視角</td><td></td><td></td><td></td></tr>
+      <tr><td>5</td><td>●敘事演講</td><td>○傾聽回饋</td><td></td><td></td><td></td></tr>
+      <tr><td rowspan="4">二</td><td>6</td><td>○互教</td><td></td><td>●共編查證</td><td>●國際組織×SDGs</td><td></td></tr>
+      <tr><td>7</td><td>●口頭評論</td><td>●三身分獨白</td><td></td><td>●各洲影像</td><td></td></tr>
+      <tr><td>8</td><td>●討論與倡議</td><td>●站位＋咖啡館</td><td></td><td>○跨國案例</td><td>○發想起點</td></tr>
+      <tr><td>9</td><td>●立場短講</td><td>○聽眾評分</td><td></td><td></td><td></td></tr>
+      <tr><td rowspan="5">三</td><td>10</td><td>○換位日記</td><td>●打包抉擇</td><td></td><td>●難民路線</td><td>○需求洞察</td></tr>
+      <tr><td>11</td><td></td><td>●同理心地圖</td><td>○方案檢索</td><td></td><td>●HMW→原型</td></tr>
+      <tr><td>12</td><td>○檔案卡解說</td><td>○在地體感</td><td>○資料查證</td><td>●國際城市</td><td>●問題發現</td></tr>
+      <tr><td>13</td><td></td><td>○使用者訪問</td><td>●AI 提示詞</td><td>○國際借鏡</td><td>●完整循環</td></tr>
+      <tr><td>14</td><td>●三分鐘 Pitch</td><td>○互評投票</td><td>○對照呈現</td><td></td><td>●提案深化</td></tr>
+      <tr><td rowspan="4">四</td><td>15</td><td>●提問設計＋發音</td><td></td><td>○錄音上傳</td><td>●台灣文化選題</td><td>○企劃設計</td></tr>
+      <tr><td>16</td><td>●正式主持</td><td>●回應聽眾觀點</td><td></td><td>●文化詮釋</td><td></td></tr>
+      <tr><td>17</td><td>●雙語書寫</td><td>○同儕健檢</td><td>○數位檔案</td><td></td><td>●統整策展</td></tr>
+      <tr><td>18</td><td>●成果簡報</td><td></td><td></td><td></td><td>○歷程回顧</td></tr>
+    </table>
+    <p style="font-size:12px;color:var(--sub);font-weight:700;margin-top:8px">●＝主要培養　○＝輔助觸及</p>
+  </div>
+</section>
+
+<section id="grading">
+  <h2 class="sec">學期成績結構建議</h2>
+  <div class="card tablebox">
+    <table>
+      <tr><th>項目</th><th>佔比</th><th>對應週次</th></tr>
+      <tr><td>平時任務與課堂參與（各週尺規）</td><td>40%</td><td>全學期</td></tr>
+      <tr><td>單元一成果：My Story 敘事演講</td><td>10%</td><td>第 5 週</td></tr>
+      <tr><td>單元二成果：議題立場短講（期中）</td><td>15%</td><td>第 9 週</td></tr>
+      <tr><td>單元三成果：設計提案發表</td><td>15%</td><td>第 14 週</td></tr>
+      <tr><td>單元四成果：學習歷程檔案＋期末成果簡報</td><td>20%</td><td>第 17-18 週</td></tr>
+    </table>
+    <div class="note">進階 18 週（AI 工具批判思考、Woodson 跨國書信、UNESCO 飲食文化、Slum Tourism 思辨、XR 策展、跨國視訊交流）詳細設計規劃中。</div>
+  </div>
+</section>
+
+</main>
+
+<footer>國際移動力 GLOBAL MOBILITY · 校訂必修課程設計</footer>
+
+</body>
+</html>
